@@ -5,18 +5,18 @@
 #
 Name     : pypi-pyqt5_sip
 Version  : 12.11.1
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/d2/f4/4c3e5fc1584f5a2964cfc89bf420cfcc59aba0b1f2d08446e2b491a21ed5/PyQt5_sip-12.11.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/d2/f4/4c3e5fc1584f5a2964cfc89bf420cfcc59aba0b1f2d08446e2b491a21ed5/PyQt5_sip-12.11.1.tar.gz
 Summary  : The sip module support for PyQt5
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
-Requires: pypi-pyqt5_sip-filemap = %{version}-%{release}
-Requires: pypi-pyqt5_sip-lib = %{version}-%{release}
 Requires: pypi-pyqt5_sip-license = %{version}-%{release}
 Requires: pypi-pyqt5_sip-python = %{version}-%{release}
 Requires: pypi-pyqt5_sip-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : pypi(setuptools)
+BuildRequires : pypi(wheel)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -25,24 +25,6 @@ BuildRequires : buildreq-distutils3
 sip Extension Module
 ====================
 The sip extension module provides support for the PyQt5 package.
-
-%package filemap
-Summary: filemap components for the pypi-pyqt5_sip package.
-Group: Default
-
-%description filemap
-filemap components for the pypi-pyqt5_sip package.
-
-
-%package lib
-Summary: lib components for the pypi-pyqt5_sip package.
-Group: Libraries
-Requires: pypi-pyqt5_sip-license = %{version}-%{release}
-Requires: pypi-pyqt5_sip-filemap = %{version}-%{release}
-
-%description lib
-lib components for the pypi-pyqt5_sip package.
-
 
 %package license
 Summary: license components for the pypi-pyqt5_sip package.
@@ -64,7 +46,6 @@ python components for the pypi-pyqt5_sip package.
 %package python3
 Summary: python3 components for the pypi-pyqt5_sip package.
 Group: Default
-Requires: pypi-pyqt5_sip-filemap = %{version}-%{release}
 Requires: python3-core
 Provides: pypi(pyqt5_sip)
 
@@ -84,15 +65,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680047180
+export SOURCE_DATE_EPOCH=1683321950
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
@@ -128,14 +109,6 @@ popd
 %files
 %defattr(-,root,root,-)
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-pypi-pyqt5_sip
-
-%files lib
-%defattr(-,root,root,-)
-/usr/share/clear/optimized-elf/other*
-
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/pypi-pyqt5_sip/2136dbc93e95a70deae070e44ff6b2702ec1599c
@@ -146,4 +119,5 @@ popd
 
 %files python3
 %defattr(-,root,root,-)
+/V3/usr/lib/python3*/*
 /usr/lib/python3*/*
