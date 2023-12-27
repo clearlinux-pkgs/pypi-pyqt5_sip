@@ -7,7 +7,7 @@
 #
 Name     : pypi-pyqt5_sip
 Version  : 12.13.0
-Release  : 4
+Release  : 5
 URL      : https://files.pythonhosted.org/packages/ee/81/fce2a475aa56c1f49707d9306b930695b6ff078c2242c9f2fd72a3214e1f/PyQt5_sip-12.13.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ee/81/fce2a475aa56c1f49707d9306b930695b6ff078c2242c9f2fd72a3214e1f/PyQt5_sip-12.13.0.tar.gz
 Summary  : The sip module support for PyQt5
